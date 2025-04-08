@@ -2,6 +2,22 @@
 
 using namespace std;
 
+int* Resize(int* Original, int OriginalSize, int NewSize)
+{
+	int* NewDynamicArray = new int[NewSize];
+
+	for (int i = 0; i < OriginalSize; i++)
+	{
+		NewDynamicArray[i] = Original[i];
+	}
+
+	delete[] Original;
+	Original = NewDynamicArray;
+	NewDynamicArray = nullptr;
+
+	return Original;
+}
+
 int main()
 {
 	int ArraySize = 10;
@@ -12,11 +28,7 @@ int main()
 		DynamicArray[i] = (i + 1) * 3;
 	}
 
-	int* NewDynamicArray = new int[20];
-	copy(DynamicArray, DynamicArray + ArraySize, NewDynamicArray);
-	delete[] DynamicArray;
-	DynamicArray = NewDynamicArray;
-	NewDynamicArray = nullptr;
+	DynamicArray = Resize(DynamicArray, 10, 20);
 
 	for (int i = 10; i < 20; i++)
 	{
