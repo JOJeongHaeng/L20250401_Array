@@ -29,6 +29,7 @@ int main()
 	}
 
 	delete[] DynamicArray;
+	DynamicArray = nullptr;
 
     return 0;
 }
