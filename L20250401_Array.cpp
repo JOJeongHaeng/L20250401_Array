@@ -4,67 +4,31 @@ using namespace std;
 
 int main()
 {
-	string star = "*";
-	for (int i = 0; i < 5; i++)
+	int ArraySize = 10;
+	int* DynamicArray = new int[ArraySize];
+
+	for (int i = 0; i < 10; i++)
 	{
-		cout << star << endl;
-		star = star + "*";
+		DynamicArray[i] = (i + 1) * 3;
 	}
 
-	cout << endl;
-	
-	int MaxCount = 0;
+	int* NewDynamicArray = new int[20];
+	copy(DynamicArray, DynamicArray + ArraySize, NewDynamicArray);
+	delete[] DynamicArray;
+	DynamicArray = NewDynamicArray;
+	NewDynamicArray = nullptr;
 
-	cin >> MaxCount;
-
-	for (int i = 0; i < MaxCount; i++)
+	for (int i = 10; i < 20; i++)
 	{
-		for (int j = 0; j < i+1; j++)
-		{
-			cout << "*";
-		}
-		cout << endl;
+		DynamicArray[i] = (i - 9) * 4;
 	}
 
-	cout << endl;
-
-	for (int i = 0; i < MaxCount; i++)
+	for (int i = 0; i < 20; i++)
 	{
-		for (int j = 0; j < MaxCount - i; j++)
-		{
-			cout << "*";
-		}
-		cout << endl;
+		cout << DynamicArray[i] << endl;
 	}
 
-	for (int i = 0; i < MaxCount; i++)
-	{
-		for (int j = 0; j < i; j++)
-		{
-			cout << " ";
-		}
-		for (int j = 0; j < MaxCount - i; j++)
-		{
-			cout << "*";
-		}
-		cout << endl;
-	}
-
-	for (int i = 0; i < MaxCount; i++)
-	{
-		for (int j = 0; j < MaxCount; j++)
-		{
-			if (j >= i)
-			{
-				cout << "*";
-			}
-			else
-			{
-				cout << " ";
-			}
-		}
-		cout << endl;
-	}
+	delete[] DynamicArray;
 
     return 0;
 }
